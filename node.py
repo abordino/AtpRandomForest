@@ -2,8 +2,10 @@ from random import sample
 
 
 class DecisionNode:
-    """A Decision Node asks a question based on a column
-    It has a true and a left child.
+    """
+        A Decision Node asks a question based on a column and a threshold. Color attribute is used to classify whereas
+        the index attribute contains the index of the observation of the training dataset which are able to reach the node.
+        It has a true and a left child.
     """
 
     def __init__(self, threshold=None, column=None, true_branch=None, false_branch=None, color=None, index=None):
@@ -94,9 +96,10 @@ class DecisionNode:
         self.set_color(dataset.iloc[:, -1].mode()[0])
 
     def gini(self, dataset):
-        """Calculate the Gini Impurity for a list of rows.
-        https://en.wikipedia.org/wiki/Decision_tree_learning#Gini_impurity
-        The column of the label must be the last one.
+        """
+            Calculate the Gini Impurity for a list of rows.
+            https://en.wikipedia.org/wiki/Decision_tree_learning#Gini_impurity
+            The column of the label must be the last one.
         """
 
         impurity = 1
@@ -110,23 +113,26 @@ class DecisionNode:
         return impurity
 
     def info_gain(self, dataset, true_data, false_data):
-        """Calculate the gini gain in order to find the best split
-        in terms of information gain."""
+        """
+            Calculate the gini gain in order to find the best split
+            in terms of information gain.
+        """
 
         if self.get_true() and self.get_false():
             N = dataset.shape[0]
             N_T, N_F = true_data.shape[0], false_data.shape[0]
             p_true = N_T / N
             p_false = N_F / N
-            gain = self.gini(dataset) - p_true * self.get_true().gini(true_data) - p_false * self.get_false().gini(
-                false_data)
+            gain = self.gini(dataset) - p_true * self.get_true().gini(true_data) - p_false * self.get_false().gini(false_data)
 
             return gain
 
     def best_split(self, dataset, subsample=None):
-        """Find the best question to ask by iterating over every feature / value
-        and calculating the information gain.
-        The type columns must be the last one."""
+        """
+            Find the best question to ask by iterating over every feature / value
+            and calculating the information gain.
+            The type columns must be the last one.
+        """
 
         info_gain = 0
         best_column, best_threshold, best_index = None, None, None
