@@ -7,11 +7,11 @@ tennis = pd.read_csv("data/tennis_data.csv")
 train, third_label = train_test_split(tennis, test_size=0.9)
 new_train, test = train_test_split(third_label, test_size=0.9)
 
-n_tree = input('Choose the number of trees in the forest (default is 30): ')
-subsample = input('Choose m - number of variables considered in every split (default is all): ')
-leaves = input('Choose the minimum number of element in each leaf (default is 1): ')
-dept = input('Choose max depth of the tree (default is Inf): ')
-prune = str(input('Choose how to prune the tree: mep or rep (default is None): '))
+n_tree = float(input('Choose the number of trees in the forest (default is 30): '))
+subsample = float(input('Choose m - number of variables considered in every split (default is all): '))
+leaves = float(input('Choose the minimum number of element in each leaf (default is 1): '))
+dept = float(input('Choose max depth of the tree (default is Inf): '))
+prune = input('Choose how to prune the tree: mep or rep (default is None): ')
 
 if n_tree or subsample or leaves or dept or prune:
     print("----> M" + str(subsample) + "L" + str(leaves) + "D" + str(dept) + "RANDOM FOREST \n")

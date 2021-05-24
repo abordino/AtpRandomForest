@@ -2,10 +2,8 @@ from random import sample
 
 
 class DecisionNode:
-    """A Decision Node asks a question.
-
-    The decision node has a Question class object as payload and a reference to the true and left branches.
-    Dataset are again considered to be pandas dataframe.
+    """A Decision Node asks a question based on a column
+    It has a true and a left child.
     """
 
     def __init__(self, threshold=None, column=None, true_branch=None, false_branch=None, color=None, index=None):
