@@ -6,6 +6,7 @@ The goal is to solve a real problem with a family of algorithms studied in class
 The aim is to predict the result of ATP tennis matches using random forest (CART algorithm).
 The raw dataset can be found at http://tennis-data.co.uk/alldata.php and it is also present in the data folder (atp_data.csv).
 The classifier has then been implemented on a suitable transformation (tennis_data.csv).
+The other datasets are for testing purposes. 
 
 ## Requirements
 Use the package manager pip to install all the required packages.
