@@ -33,6 +33,7 @@ class RandomForest:
             tmp.grow(bagged_data, m, depth, min_leaves, post_pruning)
 
             tmp_tree.append(tmp)
+            print("Tree " + str(i) + " is been added")
 
         self.set_garden(tmp_tree)
 
