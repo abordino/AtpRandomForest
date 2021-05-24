@@ -65,25 +65,26 @@ class DecisionNode:
             return (self.get_color() == node2.get_color()) and (self.get_threshold() == node2.get_threshold()) and\
                    (self.get_column() == node2.get_column())
 
-    def __str__(self):
+    def print_generic(self, reverse=False):
         if (self.get_column() is not None) and (self.get_threshold() is not None):
-            condition = "=="
+            if reverse:
+                condition = "!="
+            else:
+                condition = "=="
             if type(self.get_threshold()) == int or type(self.get_threshold()) == float:
-                condition = ">="
+                if reverse:
+                    condition = "<"
+                else:
+                    condition = ">="
             return "column {} {} {}?".format(self.get_column(), condition, str(self.get_threshold()))
-        elif self.get_color() is not None:
-            return "class: {}".format(self.get_color())
         else:
             return "The node is empty"
 
+    def __str__(self):
+        self.print_generic()
+
     def print_false(self):
-        if (self.get_column() is not None) and (self.get_threshold() is not None):
-            condition = "!="
-            if type(self.get_threshold()) == int or type(self.get_threshold()) == float:
-                condition = "<"
-            return "column {} {} {}?".format(self.get_column(), condition, str(self.get_threshold()))
-        else:
-            return "The node is empty"
+        self.print_generic(reverse=False)
 
     def ask(self, observation):
         if (self.get_column() is not None) and (self.get_threshold() is not None):
@@ -138,6 +139,7 @@ class DecisionNode:
         best_column, best_threshold, best_index = None, None, None
         COL_NUMBER = dataset.shape[1] - 1
         possible_column = range(COL_NUMBER)
+
         if (subsample is not None) and (subsample <= COL_NUMBER):
             possible_column = sample(possible_column, subsample)
 
@@ -163,4 +165,3 @@ class DecisionNode:
 
         else:
             return self.best_split(dataset, subsample)
-

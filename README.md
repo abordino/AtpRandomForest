@@ -20,6 +20,7 @@ with parameters m=3 (variables shuffling in the split), min_leaves=5 (minimum nu
 The estimated accuracy on a test set is 71%. 
 
 ## UML
+![Alt text](uml.jpg)
 
 
 
