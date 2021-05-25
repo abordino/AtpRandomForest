@@ -7,13 +7,13 @@ from sklearn.model_selection import train_test_split
 class DecisionTree(Prunable):
 
     def __init__(self, root=DecisionNode()):
-        self.root = root
+        self._root = root
 
     def get_root(self):
-        return self.root
+        return self._root
     
     def set_root(self, root):
-        self.root = root
+        self._root = root
     
     def to_string(self, node, depth=0):
         ret = ""
@@ -78,9 +78,9 @@ class DecisionTree(Prunable):
 
     def breadth(self):
         nodes = []
-        if self.root:
+        if self.get_root():
             queue = Queue()
-            queue.put(self.root)
+            queue.put(self.get_root())
 
             while not queue.empty():
                 current = queue.get()
@@ -95,7 +95,7 @@ class DecisionTree(Prunable):
         traversal = self.breadth()
         frontier = []
         for node in traversal:
-            if node.get_true() is not None and node.get_false() is not None:
+            if (node.get_true() is not None) and (node.get_false() is not None):
                 if (node.get_true().get_color() is not None) and (node.get_false().get_color() is not None):
                     frontier.append(node)
 
@@ -131,7 +131,7 @@ class DecisionTree(Prunable):
                 best_node.set_true(None)
                 best_node.set_false(None)
 
-    def basic_grow(self, dataset, m=None, depth=float('inf'), min_leaves=1):
+    def _basic_grow(self, dataset, m=None, depth=float('inf'), min_leaves=1):
         current_node = self.get_root()
         N = dataset.shape[0]
 
@@ -152,7 +152,7 @@ class DecisionTree(Prunable):
             train_data, prune_data = train_test_split(dataset, test_size=0.3)
         else:
             train_data = dataset
-        self.basic_grow(train_data, m, depth, min_leaves)
+        self._basic_grow(train_data, m, depth, min_leaves)
         if post_pruning == "mep":
             self.minimum_pruning(train_data, prune_data)
         elif post_pruning == "rep":
@@ -165,7 +165,7 @@ if __name__ == "__main__":
     from sklearn.tree import DecisionTreeClassifier
     from sklearn.tree import export_text
 
-    iris = pd.read_csv("../data/Iris.csv", index_col=0)
+    iris = pd.read_csv("./data/Iris.csv", index_col=0)
     train, test = train_test_split(iris, test_size=0.2)
 
     print("----> FULL GROWTH ON WHOLE IRIS \n")

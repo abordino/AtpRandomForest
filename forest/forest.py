@@ -6,20 +6,20 @@ from random import choices
 class RandomForest:
 
     def __init__(self, b=30):
-        self.garden = {}
-        self.how_many = b
+        self._garden = {}
+        self._how_many = b
 
     def get_garden(self):
-        return self.garden
+        return self._garden
 
     def get_number(self):
-        return self.how_many
+        return self._how_many
 
     def set_garden(self, garden):
-        self.garden = garden
+        self._garden = garden
 
     def set_number(self, b):
-        self.how_many = b
+        self._how_many = b
 
     def grow(self, dataset, m=None, depth=float('inf'), min_leaves=1, post_pruning=None):
         tmp_tree = []
@@ -60,7 +60,7 @@ if __name__ == "__main__":
     import pandas as pd
     from sklearn.model_selection import train_test_split
 
-    iris = pd.read_csv("../data/Iris.csv", index_col=0)
+    iris = pd.read_csv("./data/Iris.csv", index_col=0)
     train, test = train_test_split(iris, test_size=0.2)
 
     print("----> FOREST ON WHOLE IRIS \n")

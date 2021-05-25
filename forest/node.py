@@ -9,48 +9,48 @@ class DecisionNode:
     """
 
     def __init__(self, threshold=None, column=None, true_branch=None, false_branch=None, color=None, index=None):
-        self.threshold = threshold
-        self.column = column
-        self.true_branch = true_branch
-        self.false_branch = false_branch
-        self.color = color
-        self.index = index
+        self._threshold = threshold
+        self._column = column
+        self._true_branch = true_branch
+        self._false_branch = false_branch
+        self._color = color
+        self._index = index
 
     def get_threshold(self):
-        return self.threshold
+        return self._threshold
 
     def get_column(self):
-        return self.column
+        return self._column
 
     def get_true(self):
-        return self.true_branch
+        return self._true_branch
 
     def get_false(self):
-        return self.false_branch
+        return self._false_branch
 
     def get_color(self):
-        return self.color
+        return self._color
 
     def get_index(self):
-        return self.index
+        return self._index
 
     def set_threshold(self, threshold):
-        self.threshold = threshold
+        self._threshold = threshold
 
     def set_column(self, column):
-        self.column = column
+        self._column = column
 
     def set_true(self, true_branch):
-        self.true_branch = true_branch
+        self._true_branch = true_branch
 
     def set_false(self, false_branch):
-        self.false_branch = false_branch
+        self._false_branch = false_branch
 
     def set_color(self, color):
-        self.color = color
+        self._color = color
 
     def set_index(self, index):
-        self.index = index
+        self._index = index
 
     def is_leaf(self):
         if self.get_color() is not None:
@@ -75,10 +75,10 @@ class DecisionNode:
             return "The node is empty"
 
     def __str__(self):
-        self.print_generic("==", ">=")
+        return self.print_generic("==", ">=")
 
     def print_false(self):
-        self.print_generic("!=", "<")
+        return self.print_generic("!=", "<")
 
     def ask(self, observation):
         if (self.get_column() is not None) and (self.get_threshold() is not None):
@@ -90,7 +90,8 @@ class DecisionNode:
     def average_color(self, dataset):
         self.set_color(dataset.iloc[:, -1].mode()[0])
 
-    def gini(self, dataset):
+    @staticmethod
+    def gini(dataset):
         """
             Calculate the Gini Impurity for a list of rows.
             https://en.wikipedia.org/wiki/Decision_tree_learning#Gini_impurity

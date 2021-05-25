@@ -1,9 +1,9 @@
 import pandas as pd
 from sklearn.model_selection import train_test_split
-from forest import RandomForest
+from forest.forest import RandomForest
 import pickle
 
-tennis = pd.read_csv("data/tennis_data.csv")
+tennis = pd.read_csv("./data/tennis_data.csv")
 train, third_label = train_test_split(tennis, test_size=0.9)
 new_train, test = train_test_split(third_label, test_size=0.9)
 
@@ -19,17 +19,6 @@ if n_tree or subsample or leaves or dept or prune:
     tennis_forest.grow(train, m=subsample, min_leaves=leaves, depth=dept, post_pruning=prune)
     print("Full test acc: {0:.0%}".format(tennis_forest.accuracy(test)) + "\n")
 
-    filehandler = open("M" + str(subsample) + "L" + str(leaves) + "D" + str(dept) + ".obj", "wb")
-    pickle.dump(tennis_forest, filehandler)
-    filehandler.close()
-
-
-
-
-
-
-
-
-
-
-
+    file_handler = open("M" + str(subsample) + "L" + str(leaves) + "D" + str(dept) + ".obj", "wb")
+    pickle.dump(tennis_forest, file_handler)
+    file_handler.close()

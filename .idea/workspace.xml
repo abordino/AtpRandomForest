@@ -7,6 +7,11 @@
     <list default="true" id="0d5b87f6-43ae-43e5-acc6-28b622e83dad" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/class/forest.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/class/node.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/class/prunable.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/class/tree.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -52,7 +57,7 @@
       <recent name="$PROJECT_DIR$/class" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.main">
+  <component name="RunManager" selected="Python.forest">
     <configuration name="forest" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
       <module name="dbalg21" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -184,7 +189,8 @@
       <workItem from="1621884269690" duration="12000" />
       <workItem from="1621884307963" duration="6717000" />
       <workItem from="1621950902966" duration="241000" />
-      <workItem from="1621951178001" duration="1037000" />
+      <workItem from="1621951178001" duration="1434000" />
+      <workItem from="1621974083065" duration="882000" />
     </task>
     <task id="LOCAL-00001" summary="requirements.txt add">
       <created>1621886725119</created>
@@ -205,7 +211,7 @@
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/dbalg21$main.coverage" NAME="main Coverage Results" MODIFIED="1621884454798" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/dbalg21$forest.coverage" NAME="forest Coverage Results" MODIFIED="1621718080547" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/dbalg21$tree.coverage" NAME="tree Coverage Results" MODIFIED="1621710202591" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/dbalg21$forest.coverage" NAME="forest Coverage Results" MODIFIED="1621974640331" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/dbalg21$tree.coverage" NAME="tree Coverage Results" MODIFIED="1621974569925" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>
