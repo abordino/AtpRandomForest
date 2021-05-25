@@ -65,26 +65,20 @@ class DecisionNode:
             return (self.get_color() == node2.get_color()) and (self.get_threshold() == node2.get_threshold()) and\
                    (self.get_column() == node2.get_column())
 
-    def print_generic(self, reverse=False):
+    def print_generic(self, condition_equal, condition_numeric):
         if (self.get_column() is not None) and (self.get_threshold() is not None):
-            if reverse:
-                condition = "!="
-            else:
-                condition = "=="
+            condition = condition_equal
             if type(self.get_threshold()) == int or type(self.get_threshold()) == float:
-                if reverse:
-                    condition = "<"
-                else:
-                    condition = ">="
+                condition = condition_numeric
             return "column {} {} {}?".format(self.get_column(), condition, str(self.get_threshold()))
         else:
             return "The node is empty"
 
     def __str__(self):
-        self.print_generic()
+        self.print_generic("==", ">=")
 
     def print_false(self):
-        self.print_generic(reverse=False)
+        self.print_generic("!=", "<")
 
     def ask(self, observation):
         if (self.get_column() is not None) and (self.get_threshold() is not None):

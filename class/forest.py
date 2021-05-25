@@ -60,7 +60,7 @@ if __name__ == "__main__":
     import pandas as pd
     from sklearn.model_selection import train_test_split
 
-    iris = pd.read_csv("data/Iris.csv", index_col=0)
+    iris = pd.read_csv("../data/Iris.csv", index_col=0)
     train, test = train_test_split(iris, test_size=0.2)
 
     print("----> FOREST ON WHOLE IRIS \n")
