@@ -22,7 +22,7 @@ class RandomForest:
         self._how_many = b
 
     def grow(self, dataset, m=None, depth=float('inf'), min_leaves=1, post_pruning=None):
-        tmp_tree = []
+        tmp_tree = {}
         for i in range(self.get_number()):
             N = dataset.shape[0]
             index = choices(range(N), k=N)
@@ -32,7 +32,7 @@ class RandomForest:
             tmp = DecisionTree(DecisionNode())
             tmp.grow(bagged_data, m, depth, min_leaves, post_pruning)
 
-            tmp_tree.append(tmp)
+            tmp_tree[i] = tmp
             print("Tree " + str(i) + " is been added")
 
         self.set_garden(tmp_tree)
@@ -60,40 +60,40 @@ if __name__ == "__main__":
     import pandas as pd
     from sklearn.model_selection import train_test_split
 
-    iris = pd.read_csv("./data/Iris.csv", index_col=0)
+    iris = pd.read_csv("../data/Iris.csv", index_col=0)
     train, test = train_test_split(iris, test_size=0.2)
 
     print("----> FOREST ON WHOLE IRIS \n")
-    iris_forest = RandomForest()
+    iris_forest = RandomForest(b=3)
     iris_forest.grow(iris)
     print("Full train accuracy: {0:.0%}".format(iris_forest.accuracy(iris)))
 
     print("----> SOME OF ITS TREES \n")
+    print(iris_forest.get_garden()[0])
     print(iris_forest.get_garden()[1])
-    print(iris_forest.get_garden()[11])
-    print(iris_forest.get_garden()[21])
+    print(iris_forest.get_garden()[2])
 
     print("----> FOREST ON TRAIN + ACCURACY \n")
-    iris_forest = RandomForest()
+    iris_forest = RandomForest(b=6)
     iris_forest.grow(train)
     print("Full test acc: {0:.0%}".format(iris_forest.accuracy(test)))
 
     print("----> FOREST ON TRAIN m=2 + ACCURACY \n")
-    iris_forest = RandomForest()
+    iris_forest = RandomForest(b=6)
     iris_forest.grow(train, m=2)
     print("Reduced test acc: {0:.0%}".format(iris_forest.accuracy(test)))
 
     print("----> FOREST WITH 5-LEAVES + ACCURACY \n")
-    iris_forest = RandomForest()
+    iris_forest = RandomForest(b=6)
     iris_forest.grow(train, min_leaves=5)
     print("Reduced test acc: {0:.0%}".format(iris_forest.accuracy(test)))
 
     print("----> MEP FOREST + ACCURACY \n")
-    iris_forest = RandomForest()
+    iris_forest = RandomForest(b=6)
     iris_forest.grow(train, post_pruning="mep")
     print("Reduced test acc: {0:.0%}".format(iris_forest.accuracy(test)))
 
     print("----> REP FOREST + ACCURACY \n")
-    iris_forest = RandomForest()
+    iris_forest = RandomForest(b=6)
     iris_forest.grow(train, post_pruning="rep")
     print("Reduced test acc: {0:.0%}".format(iris_forest.accuracy(test)))
