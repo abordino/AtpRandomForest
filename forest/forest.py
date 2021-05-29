@@ -6,7 +6,7 @@ from random import choices
 class RandomForest:
 
     def __init__(self, b=30):
-        self._garden = {}
+        self._garden = list()
         self._how_many = b
 
     def get_garden(self):
@@ -22,7 +22,7 @@ class RandomForest:
         self._how_many = b
 
     def grow(self, dataset, m=None, depth=float('inf'), min_leaves=1, post_pruning=None):
-        tmp_tree = {}
+        tmp_tree = list()
         for i in range(self.get_number()):
             N = dataset.shape[0]
             index = choices(range(N), k=N)
@@ -32,7 +32,7 @@ class RandomForest:
             tmp = DecisionTree(DecisionNode())
             tmp.grow(bagged_data, m, depth, min_leaves, post_pruning)
 
-            tmp_tree[i] = tmp
+            tmp_tree.append(tmp)
             print("Tree " + str(i) + " is been added")
 
         self.set_garden(tmp_tree)
