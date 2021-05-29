@@ -66,7 +66,9 @@ class DecisionNode:
                    (self.get_column() == node2.get_column())
 
     def print_generic(self, condition_equal, condition_numeric):
-        if (self.get_column() is not None) and (self.get_threshold() is not None):
+        if self.get_color() is not None:
+            return str(self.get_color())
+        elif self.get_column() is not None and self.get_threshold() is not None:
             condition = condition_equal
             if type(self.get_threshold()) == int or type(self.get_threshold()) == float:
                 condition = condition_numeric
@@ -99,11 +101,16 @@ class DecisionNode:
         """
 
         impurity = 1
-        labels = set(dataset.iloc[:, -1])
+        prob = {}
         N = dataset.shape[0]
-        for lab in labels:
-            data_lab = dataset[dataset.iloc[:, -1] == lab]
-            p_lab = data_lab.shape[0] / N
+        for i in range(dataset.shape[0]):
+            if dataset.iloc[i, -1] in prob:
+                prob[dataset.iloc[i, -1]] += 1
+            else:
+                prob[dataset.iloc[i, -1]] = 1
+
+        for lab in prob.keys():
+            p_lab = prob[lab] / N
             impurity -= p_lab ** 2
 
         return impurity
