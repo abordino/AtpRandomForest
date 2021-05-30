@@ -99,7 +99,7 @@ class DecisionTree(Prunable):
                 if (node.get_true().get_color() is not None) and (node.get_false().get_color() is not None):
                     frontier.append(node)
 
-        return frontier
+        return frontier[::-1]
 
     def minimum_pruning(self, train_dataset, prune_dataset):
         for node in self.deepest_split():
