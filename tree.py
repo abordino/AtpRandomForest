@@ -165,7 +165,7 @@ if __name__ == "__main__":
     from sklearn.tree import DecisionTreeClassifier
     from sklearn.tree import export_text
 
-    iris = pd.read_csv("../data/Iris.csv", index_col=0)
+    iris = pd.read_csv("data/Iris.csv", index_col=0)
     train, test = train_test_split(iris, test_size=0.2)
 
     print("----> FULL GROWTH ON WHOLE IRIS \n")
