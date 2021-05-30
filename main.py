@@ -5,8 +5,8 @@ from forest import RandomForest
 import pickle
 
 tennis = pd.read_csv("data/tennis_data.csv", header=0)
-train, third_label = train_test_split(tennis, test_size=0.99)
-new_train, test = train_test_split(third_label, test_size=0.99)
+train, third_label = train_test_split(tennis, test_size=0.85)
+new_train, test = train_test_split(third_label, test_size=0.85)
 
 n_tree = int(input('Choose the number of trees in the forest (default is 30): '))
 subsample = int(input('Choose m - number of variables considered in every split (default is all): '))
